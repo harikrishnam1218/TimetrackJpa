@@ -6,6 +6,7 @@ import java.util.Map;
 import com.hcl.swipe.exception.DBException;
 import com.hcl.swipe.exception.UserNotFoundException;
 import com.hcl.swipe.model.Employee;
+import com.hcl.swipe.model.RolesCountData;
 
 public interface EmployeeService {
 
@@ -14,5 +15,5 @@ public interface EmployeeService {
 	Employee updateEmployee(Employee employee,Long id) throws UserNotFoundException, DBException ;
 	Employee findById(Long id) throws UserNotFoundException;
 	List<Employee> getEmployee() throws UserNotFoundException ;
-	List<Map<String, Object>> getEmployeeUsingNativeQuery();
+	List<RolesCountData> getEmployeeUsingNativeQuery() throws DBException;
 }

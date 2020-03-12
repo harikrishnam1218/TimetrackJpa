@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hcl.swipe.exception.DBException;
 import com.hcl.swipe.exception.UserNotFoundException;
 import com.hcl.swipe.model.Employee;
+import com.hcl.swipe.model.RolesCountData;
 import com.hcl.swipe.service.EmployeeServiceImpl;
 
 @RestController
@@ -43,7 +44,10 @@ public class EmployeeController {
 	public ResponseEntity<List<Employee>> employeDetailsFromHQL() throws UserNotFoundException {
 		List<Employee> list=employeeService.getEmployee();
 		return new ResponseEntity(list, HttpStatus.OK);
-		//return list;
 	}
-	
+	@GetMapping(value="/roles")
+	public ResponseEntity<List<RolesCountData>> employeRoleDetails() throws DBException {
+		List<RolesCountData> list=employeeService.getEmployeeUsingNativeQuery();
+		return new ResponseEntity(list, HttpStatus.OK);
+	}
 }

@@ -1,5 +1,6 @@
 package com.hcl.swipe.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.hcl.swipe.exception.DBException;
 import com.hcl.swipe.exception.UserNotFoundException;
 import com.hcl.swipe.model.Employee;
+import com.hcl.swipe.model.RolesCountData;
 import com.hcl.swipe.repository.EmployeeRepository;
 
 @Service
@@ -77,9 +79,17 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public List<Map<String, Object>> getEmployeeUsingNativeQuery() {
+	public List<RolesCountData> getEmployeeUsingNativeQuery() throws DBException {
+		List<RolesCountData> responseData=new ArrayList<RolesCountData>();
 		List<Map<String, Object>> listmap=employeeRepository.getEmployeeUsingNativeQuery();
-		return listmap;
+		if(listmap==null ||listmap.isEmpty()) {
+			throw new DBException("Roles Data Not Found");
+		}
+		listmap.forEach(map->{
+			RolesCountData data= new RolesCountData((String)map.get("role"),Integer.parseInt(map.get("count").toString()));
+			responseData.add(data);
+		});
+		return responseData;
 	}
 
 }

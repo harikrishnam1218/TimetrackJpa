@@ -1,6 +1,6 @@
 package com.hcl.swipe.model;
 
-public class ResponseData {
+public class RolesCountData {
 private String role;
 private int count;
 
@@ -16,12 +16,12 @@ public int getCount() {
 public void setCount(int count) {
 	this.count = count;
 }
-public ResponseData(String role, int count) {
+public RolesCountData(String role, int count) {
 	super();
 	this.role = role;
 	this.count = count;
 }
-public ResponseData() {
+public RolesCountData() {
 	super();
 }
 
