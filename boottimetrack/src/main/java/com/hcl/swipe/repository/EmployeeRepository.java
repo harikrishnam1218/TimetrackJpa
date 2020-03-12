@@ -12,7 +12,7 @@ import com.hcl.swipe.model.Employee;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 	
-@Query("from employee")
+@Query("from Employee")
 public List<Employee> getEmployee();
 @Query(value="select role as role,count(*) as count from employee group by role ",nativeQuery=true)
 public List<Map<String, Object>> getEmployeeUsingNativeQuery();
